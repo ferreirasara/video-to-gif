@@ -58,7 +58,7 @@ export default function Signup() {
         </Form.Item>
         <Button block htmlType="submit" loading={loading}>Signup</Button>
       </Form>
-      {errorMessage && <Alert description={errorMessage} type="error" showIcon style={{ padding: '8px' }} />}
+      {errorMessage && <Alert message={errorMessage} type="error" showIcon style={{ padding: '8px' }} />}
       <span>Alread have an accout? Click <NavLink to='/login'>here</NavLink> to login.</span>
     </Card>
 }

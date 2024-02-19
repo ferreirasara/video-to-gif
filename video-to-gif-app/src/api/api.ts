@@ -1,3 +1,5 @@
+import { RcFile } from "antd/es/upload";
+
 export const login = async (args: { username: string, password: string }) => {
   const { password, username } = args;
   const body = { username, password }
@@ -26,4 +28,20 @@ export const signup = async (args: { username: string, email: string, password: 
   });
   const signupResponseJson = await signupResponse?.json();
   return signupResponseJson;
+}
+
+export const uploadVideo = async (file: File) => {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  const uploadResponse = await fetch(`${process.env.REACT_APP_API_BASE_URL}/video-to-gif`, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'userid': localStorage.getItem('user_id') || ""
+    }
+  });
+
+  const uploadResponseJson = await uploadResponse?.json();
+  return uploadResponseJson;
 }
