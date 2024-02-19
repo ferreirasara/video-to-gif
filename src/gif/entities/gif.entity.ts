@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Video {
+export class Gif {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

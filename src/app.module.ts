@@ -4,10 +4,10 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { config } from './ormconfig';
-import { VideoModule } from './video/video.module';
+import { GifModule } from './gif/gif.module';
 
 @Module({
-  imports: [UserModule, TypeOrmModule.forRoot(config), VideoModule],
+  imports: [UserModule, TypeOrmModule.forRoot(config), GifModule],
   controllers: [AppController],
   providers: [AppService],
 })

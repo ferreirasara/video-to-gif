@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Video } from './entities/video.entity';
+import { Gif } from './entities/gif.entity';
 import { Request } from 'express';
 import fs from 'fs';
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
@@ -9,10 +9,10 @@ import ffmpeg from 'fluent-ffmpeg';
 ffmpeg.setFfmpegPath(ffmpegPath);
 
 @Injectable()
-export class VideoService {
+export class GifService {
   constructor(
-    @InjectRepository(Video)
-    private videoRepository: Repository<Video>,
+    @InjectRepository(Gif)
+    private gifRepository: Repository<Gif>,
   ) { }
 
   async create(file: Express.Multer.File, req: Request) {
@@ -20,7 +20,7 @@ export class VideoService {
     const gifFileName = `${file.destination}/${file.filename?.split('.')?.[0]}.gif`
     await this.convertBufferToGif(file.path, gifFileName);
 
-    return await this.videoRepository.save({ name: gifFileName, userId });
+    return await this.gifRepository.save({ name: gifFileName, userId });
   }
 
   async convertBufferToGif(filePath: string, gifFileName: string) {
