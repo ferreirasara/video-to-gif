@@ -14,7 +14,8 @@ export class AuthService {
     if (!user) {
       throw new UnauthorizedException('Invalid username or password');
     }
-    if (compare(password, user.password)) {
+    const passwordCorrect = await compare(password, user.password);
+    if (passwordCorrect) {
       return {
         userId: user.id
       };
