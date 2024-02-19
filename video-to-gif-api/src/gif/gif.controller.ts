@@ -1,14 +1,14 @@
-import { Controller, Post, UseInterceptors, UploadedFile, Req, NotAcceptableException } from '@nestjs/common';
+import { Controller, Post, UseInterceptors, UploadedFile, Req, NotAcceptableException, Get, Param } from '@nestjs/common';
 import { GifService } from './gif.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Request } from 'express';
 import multerConfig from 'src/multerConfig';
 
-@Controller('video-to-gif')
+@Controller()
 export class GifController {
   constructor(private readonly gifService: GifService) { }
 
-  @Post()
+  @Post('video-to-gif')
   @UseInterceptors(FileInterceptor('file', multerConfig))
   create(@UploadedFile() file: Express.Multer.File, @Req() req: Request) {
     if (file?.mimetype?.includes('video')) {
@@ -16,5 +16,10 @@ export class GifController {
     } else {
       throw new NotAcceptableException(null, { description: "Unsupported file" });
     }
+  }
+
+  @Get('gif/:userId')
+  findAllByUserId(@Param('userId') userId: string) {
+    return this.gifService.findAllByUserId(userId);
   }
 }

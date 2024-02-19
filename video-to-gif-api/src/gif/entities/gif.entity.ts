@@ -10,4 +10,10 @@ export class Gif {
 
   @Column()
   userId: string;
+
+  @Column()
+  createdAt: Date;
+
+  @Column()
+  size: number
 }

@@ -18,17 +18,22 @@ export class GifService {
   async create(file: Express.Multer.File, req: Request) {
     const userId = req.headers?.userid?.toString();
     const gifFileName = `${file.destination}/${file.filename?.split('.')?.[0]}.gif`
-    await this.convertBufferToGif(file.path, gifFileName);
+    const bytesWritten = await this.convertBufferToGif(file.path, gifFileName);
 
-    return await this.gifRepository.save({ name: gifFileName, userId });
+    return await this.gifRepository.save({
+      name: gifFileName,
+      userId,
+      createdAt: new Date(),
+      size: bytesWritten,
+    });
   }
 
   async convertBufferToGif(filePath: string, gifFileName: string) {
-    return new Promise<void>((resolve, reject) => {
+    return new Promise<number>((resolve, reject) => {
       const outputStream = fs.createWriteStream(gifFileName);
       ffmpeg(filePath)
         .on('end', () => {
-          resolve();
+          resolve(outputStream?.bytesWritten);
         })
         .on('error', (err) => {
           reject(err);
@@ -36,5 +41,9 @@ export class GifService {
         .format('gif')
         .pipe(outputStream);
     });
+  }
+
+  async findAllByUserId(userId: string) {
+    return this.gifRepository.findBy({ userId })
   }
 }
