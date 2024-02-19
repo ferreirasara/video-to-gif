@@ -15,6 +15,7 @@ export default function Signup() {
       const values = await form.validateFields();
       const res = await signup({ password: values.password, email: values.email, username: values.username })
       if (res?.id) {
+        localStorage?.setItem('user_id', res?.userId);
         setLoggedIn(true)
         setErrorMessage(undefined)
       } else {

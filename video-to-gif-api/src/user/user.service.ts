@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotAcceptableException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
@@ -19,11 +19,7 @@ export class UserService {
       const password = await hash(createUserDto?.password, 10);
       return this.userRepository.save({ ...createUserDto, password });
     } else {
-      return {
-        message: "There is already a user with this email or username",
-        error: "Bad Request",
-        statusCode: 400,
-      }
+      throw new NotAcceptableException(null, { description: "There is already a user with this email or username" });
     }
   }
 
@@ -33,5 +29,9 @@ export class UserService {
 
   findOne(id: string) {
     return this.userRepository.findOneBy({ id });
+  }
+
+  findOneByUsername(username: string) {
+    return this.userRepository.findOneBy({ username })
   }
 }

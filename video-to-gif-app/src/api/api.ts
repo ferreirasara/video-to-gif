@@ -17,7 +17,7 @@ export const signup = async (args: { username: string, email: string, password: 
   const { password, email, username } = args;
   const body = { username, email, password }
 
-  const signupResponse = await fetch(`${process.env.REACT_APP_API_BASE_URL}/user`, {
+  const signupResponse = await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/signup`, {
     method: 'POST',
     body: JSON.stringify(body),
     headers: {

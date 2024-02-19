@@ -1,7 +1,7 @@
 import { Alert, Button, Card, Form, Input } from "antd";
 import { useState } from "react";
 import { NavLink, Navigate } from "react-router-dom";
-import { login, signup } from "../api/api";
+import { login } from "../api/api";
 
 export default function Login() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -14,7 +14,8 @@ export default function Login() {
     try {
       const values = await form.validateFields();
       const res = await login({ password: values.password, username: values.username })
-      if (res?.id) {
+      if (res?.userId) {
+        localStorage?.setItem('user_id', res?.userId);
         setLoggedIn(true)
         setErrorMessage(undefined)
       } else {
