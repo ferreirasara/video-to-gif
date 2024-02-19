@@ -45,3 +45,23 @@ export const uploadVideo = async (file: File) => {
   const uploadResponseJson = await uploadResponse?.json();
   return uploadResponseJson;
 }
+
+export const getGifsByUserId = async () => {
+  const gifsResponse = await fetch(`${process.env.REACT_APP_API_BASE_URL}/gif/${localStorage.getItem('user_id')}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  const gifsResponseJson: Gif[] = await gifsResponse?.json();
+  return gifsResponseJson;
+}
+
+export type Gif = {
+  id: string;
+  name: string;
+  location: string;
+  userId: string;
+  createdAt: Date;
+  size: number
+}

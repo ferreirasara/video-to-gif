@@ -9,6 +9,9 @@ export class Gif {
   name: string;
 
   @Column()
+  destination: string;
+
+  @Column()
   userId: string;
 
   @Column()
