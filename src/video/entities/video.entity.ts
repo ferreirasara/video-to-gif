@@ -9,11 +9,5 @@ export class Video {
   name: string;
 
   @Column()
-  contentLength: number;
-
-  @Column()
-  contentType: string;
-
-  @Column()
-  url: string;
+  userId: string;
 }
