@@ -6,9 +6,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { config } from './ormconfig';
 import { GifModule } from './gif/gif.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [UserModule, TypeOrmModule.forRoot(config), GifModule, AuthModule],
+  imports: [UserModule, TypeOrmModule.forRoot(config), GifModule, AuthModule, ConfigModule.forRoot({ envFilePath: '.env' })],
   controllers: [AppController],
   providers: [AppService],
 })

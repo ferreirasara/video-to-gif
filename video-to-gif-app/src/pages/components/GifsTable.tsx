@@ -2,6 +2,7 @@ import { Button, Table } from "antd";
 import { Gif } from "../../api/api";
 import { ColumnsType } from "antd/es/table";
 import { formatBytes, formatDateHour } from "../../utils/utils";
+import { DownloadOutlined } from "@ant-design/icons";
 
 interface GifsTableProps {
   tableData: Gif[]
@@ -20,6 +21,11 @@ export default function GifsTable({ tableData, loading, refetch }: GifsTableProp
       title: 'Created at',
       dataIndex: 'createdAt',
       render: (createdAt) => formatDateHour(createdAt)
+    },
+    {
+      title: 'URL',
+      dataIndex: 'url',
+      render: (url) => url && <Button icon={<DownloadOutlined />} shape="circle" size="small" href={url} referrerPolicy="no-referrer" />,
     },
   ]
 

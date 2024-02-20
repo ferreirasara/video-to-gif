@@ -63,5 +63,6 @@ export type Gif = {
   location: string;
   userId: string;
   createdAt: Date;
-  size: number
+  size: number;
+  url?: string;
 }
