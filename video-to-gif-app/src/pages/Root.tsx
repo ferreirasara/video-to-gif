@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { Gif, getGifsByUserId } from "../api/api";
 import GifsList from "./components/GifsList";
+import { LogoutOutlined, UploadOutlined } from "@ant-design/icons";
 
 export default function Root() {
   const [uploadVideoModalOpen, setUploadVideoModalOpen] = useState<boolean>(false);
@@ -44,10 +45,16 @@ export default function Root() {
         <Button
           onClick={() => setUploadVideoModalOpen(true)}
           type="primary"
+          icon={<UploadOutlined />}
         >
           Upload video
         </Button>
-        <Button onClick={handleLogout}>Logout</Button>
+        <Button
+          onClick={handleLogout}
+          icon={<LogoutOutlined />}
+        >
+          Logout
+        </Button>
       </Space>
       }
       style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}

@@ -2,6 +2,7 @@ import { Alert, Button, Card, Form, Input } from "antd";
 import { useState } from "react";
 import { NavLink, Navigate } from "react-router-dom";
 import { signup } from "../api/api";
+import { KeyOutlined, LoginOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 
 export default function Signup() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -40,23 +41,31 @@ export default function Signup() {
           name="username"
           rules={[{ required: true, message: 'Provide a username' }]}
         >
-          <Input />
+          <Input prefix={<UserOutlined style={{ color: '#AAA' }} />} />
         </Form.Item>
         <Form.Item
           label="Email"
           name="email"
           rules={[{ required: true, message: 'Provide a email' }]}
         >
-          <Input />
+          <Input prefix={<MailOutlined style={{ color: '#AAA' }} />} />
         </Form.Item>
         <Form.Item
           label="Password"
           name="password"
           rules={[{ required: true, message: 'Provide a password' }]}
         >
-          <Input type="password" />
+          <Input.Password prefix={<KeyOutlined style={{ color: '#AAA' }} />} />
         </Form.Item>
-        <Button block htmlType="submit" loading={loading}>Sign up</Button>
+
+        <Button
+          block
+          htmlType="submit"
+          loading={loading}
+          icon={<LoginOutlined />}
+        >
+          Sign up
+        </Button>
       </Form>
       {errorMessage && <Alert message={errorMessage} type="error" showIcon style={{ padding: '8px' }} />}
       <span>Already have an account? Click <NavLink to='/login'>here</NavLink> to login.</span>

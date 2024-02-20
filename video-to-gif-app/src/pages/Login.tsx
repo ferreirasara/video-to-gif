@@ -2,6 +2,7 @@ import { Alert, Button, Card, Form, Input } from "antd";
 import { useState } from "react";
 import { NavLink, Navigate } from "react-router-dom";
 import { login } from "../api/api";
+import { KeyOutlined, LoginOutlined, UserOutlined } from "@ant-design/icons";
 
 export default function Login() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -40,16 +41,23 @@ export default function Login() {
           name="username"
           rules={[{ required: true, message: 'Provide a username' }]}
         >
-          <Input />
+          <Input prefix={<UserOutlined style={{ color: '#AAA' }} />} />
         </Form.Item>
         <Form.Item
           label="Password"
           name="password"
           rules={[{ required: true, message: 'Provide a password' }]}
         >
-          <Input type="password" />
+          <Input.Password prefix={<KeyOutlined style={{ color: '#AAA' }} />} />
         </Form.Item>
-        <Button block htmlType="submit" loading={loading}>Login</Button>
+        <Button
+          block
+          htmlType="submit"
+          loading={loading}
+          icon={<LoginOutlined />}
+        >
+          Login
+        </Button>
       </Form>
       {errorMessage && <Alert message={errorMessage} type="error" showIcon style={{ padding: '8px' }} />}
       <span>Doesn't have an account? Click <NavLink to='/signup'>here</NavLink> to sign up.</span>

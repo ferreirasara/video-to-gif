@@ -1,6 +1,7 @@
 import { Alert, Input, Modal } from "antd";
 import { uploadVideo } from "../../api/api";
 import { useState } from "react";
+import { CheckOutlined, CloseOutlined, PaperClipOutlined } from "@ant-design/icons";
 
 interface UploadVideoModalProps {
   open: boolean
@@ -36,6 +37,8 @@ export default function UploadVideoModal({ onClose, onConfirm, open }: UploadVid
     onOk={handleUploadVideo}
     title="Upload video"
     confirmLoading={loading}
+    cancelButtonProps={{ icon: <CloseOutlined /> }}
+    okButtonProps={{ icon: <CheckOutlined /> }}
   >
     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
       <Input
@@ -43,6 +46,7 @@ export default function UploadVideoModal({ onClose, onConfirm, open }: UploadVid
         type="file"
         accept="video/*"
         onChange={(e) => setFile(e?.currentTarget?.files?.[0])}
+        prefix={<PaperClipOutlined style={{ color: '#AAA' }} />}
       />
       {errorMessage && <Alert showIcon type="error" message={errorMessage} />}
     </div>
