@@ -1,6 +1,6 @@
 # Video to GIF
 
-Video to GIF is a simple tool to convert video to gif, build as part of an selective process. This project is built using Node.js and consists of two main components: `video-to-gif-api` for the backend and `video-to-gif-app` for the frontend.
+Video to GIF is a simple tool to convert video to gif, build as part of an selective process. This project is built using Nest.js and React.js, and consists of two main components: `video-to-gif-api` for the backend and `video-to-gif-app` for the frontend.
 
 ## video-to-gif-api
 
