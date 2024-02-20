@@ -1,9 +1,9 @@
 import { Button, Card, Space } from "antd";
 import UploadVideoModal from "./components/UploadVideoModal";
-import { useCallback, useEffect, useState } from "react";
-import { Navigate, redirect } from "react-router-dom";
-import GifsTable from "./components/GifsTable";
+import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { Gif, getGifsByUserId } from "../api/api";
+import GifsList from "./components/GifsList";
 
 export default function Root() {
   const [uploadVideoModalOpen, setUploadVideoModalOpen] = useState<boolean>(false);
@@ -32,6 +32,7 @@ export default function Root() {
     setFetchGifsLoading(false);
   }
 
+  // eslint-disable-next-line
   useEffect(() => { fetchGifs() }, [])
 
   if (!userId) return <Navigate to="/login" replace={true} />
@@ -52,10 +53,9 @@ export default function Root() {
       style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}
       styles={{ body: { flex: 1, overflowY: 'auto' } }}
     >
-      <GifsTable
-        tableData={tableData || []}
+      <GifsList
+        gifs={tableData || []}
         loading={fetchGifsLoading}
-        refetch={fetchGifs}
       />
     </Card>
     <UploadVideoModal

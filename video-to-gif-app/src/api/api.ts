@@ -1,5 +1,3 @@
-import { RcFile } from "antd/es/upload";
-
 export const login = async (args: { username: string, password: string }) => {
   const { password, username } = args;
   const body = { username, password }

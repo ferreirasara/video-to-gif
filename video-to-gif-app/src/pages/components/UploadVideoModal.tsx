@@ -1,6 +1,6 @@
-import { Alert, Input, InputRef, Modal, Space } from "antd";
+import { Alert, Input, Modal } from "antd";
 import { uploadVideo } from "../../api/api";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 interface UploadVideoModalProps {
   open: boolean
@@ -18,6 +18,7 @@ export default function UploadVideoModal({ onClose, onConfirm, open }: UploadVid
       try {
         const res = await uploadVideo(file);
         if (res?.id) {
+          setFile(undefined);
           onConfirm();
         } else {
           setErrorMessage(res?.message);
