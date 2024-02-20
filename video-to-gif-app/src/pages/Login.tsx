@@ -52,6 +52,6 @@ export default function Login() {
         <Button block htmlType="submit" loading={loading}>Login</Button>
       </Form>
       {errorMessage && <Alert message={errorMessage} type="error" showIcon style={{ padding: '8px' }} />}
-      <span>Doesn't have an accout? Click <NavLink to='/signup'>here</NavLink> to signup.</span>
+      <span>Doesn't have an account? Click <NavLink to='/signup'>here</NavLink> to sign up.</span>
     </Card>
 }

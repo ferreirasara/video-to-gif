@@ -10,6 +10,8 @@ To run the API, navigate to the `video-to-gif-api` directory and use the followi
 
 1. Create a `.env` file in the `video-to-gif-api` directory with the following variables:
 
+Replace the variables with your google storage details (founded on your JSON keyfile).
+
 ```env
 STORAGE_BUCKET_NAME
 STORAGE_TYPE
@@ -20,8 +22,6 @@ STORAGE_CLIENT_EMAIL
 STORAGE_CLIENT_ID
 STORAGE_UNIVERSE_DOMAIN
 ```
-
-Replace the variables with your google storage details.
 
 2. Install dependencies and start the API server:
 
