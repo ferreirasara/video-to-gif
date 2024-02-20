@@ -38,6 +38,7 @@ export class GifService {
     return new Promise<number>((resolve, reject) => {
       const outputStream = fs.createWriteStream(destination);
       ffmpeg(filePath)
+        .outputOptions('-vf', 'fps=10,scale=160:-1:flags=lanczos')
         .on('end', () => {
           resolve(outputStream?.bytesWritten);
         })
@@ -51,15 +52,7 @@ export class GifService {
 
   async saveToGoogleCloud(filePath: string, filename: string) {
     const storage = new Storage({
-      credentials: {
-        type: process.env.STORAGE_TYPE,
-        project_id: process.env.STORAGE_PROJECT_ID,
-        private_key_id: process.env.STORAGE_PRIVATE_KEY_ID,
-        private_key: process.env.STORAGE_PRIVATE_KEY,
-        client_email: process.env.STORAGE_CLIENT_EMAIL,
-        client_id: process.env.STORAGE_CLIENT_ID,
-        universe_domain: process.env.STORAGE_UNIVERSE_DOMAIN,
-      },
+      keyFilename: process.env.GOOGLE_STORAGE_KEYFILE_NAME,
       projectId: process.env.STORAGE_PROJECT_ID,
     });
 

@@ -19,6 +19,7 @@ export default function UploadVideoModal({ onClose, onConfirm, open }: UploadVid
       try {
         const res = await uploadVideo(file);
         if (res?.id) {
+          setErrorMessage(undefined)
           setFile(undefined);
           onConfirm();
         } else {
@@ -33,7 +34,11 @@ export default function UploadVideoModal({ onClose, onConfirm, open }: UploadVid
 
   return <Modal
     open={open}
-    onCancel={onClose}
+    onCancel={() => {
+      setErrorMessage(undefined);
+      setFile(undefined);
+      onClose()
+    }}
     onOk={handleUploadVideo}
     title="Upload video"
     confirmLoading={loading}
@@ -47,6 +52,7 @@ export default function UploadVideoModal({ onClose, onConfirm, open }: UploadVid
         accept="video/*"
         onChange={(e) => setFile(e?.currentTarget?.files?.[0])}
         prefix={<PaperClipOutlined style={{ color: '#AAA' }} />}
+        onClick={(e) => e.currentTarget.files = null}
       />
       {errorMessage && <Alert showIcon type="error" message={errorMessage} />}
     </div>
