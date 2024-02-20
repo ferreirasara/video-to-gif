@@ -14,13 +14,7 @@ Replace the variables with your google storage details (founded on your JSON key
 
 ```env
 STORAGE_BUCKET_NAME
-STORAGE_TYPE
-STORAGE_PROJECT_ID
-STORAGE_PRIVATE_KEY_ID
-STORAGE_PRIVATE_KEY
-STORAGE_CLIENT_EMAIL
-STORAGE_CLIENT_ID
-STORAGE_UNIVERSE_DOMAIN
+GOOGLE_STORAGE_KEYFILE_NAME
 ```
 
 2. Install dependencies and start the API server:
@@ -55,7 +49,12 @@ npm install
 npm start
 ```
 
-## Contact Information
+# Example of a gif made with this tool
+
+![tmplcr8zpyk-62223717-837e-4bd4-8f1c-6c7e0feee1cc](https://github.com/ferreirasara/video-to-gif/assets/42873969/27e2f0e0-9eb3-4517-8886-842ead6035e8)
+
+
+# Contact Information
 
 For inquiries or further information, you can reach me via:
 
